@@ -8,10 +8,10 @@ wait_first = True
 
 try:
     while True:
-        print ('Waiting for connections')
+        print('Waiting for connections')
         print socket.gethostbyname(socket.gethostname())
         (recvSocket, address) = mySocket.accept()
-        print ('HTTP request received:')
+        print('HTTP request received:')
         url = recvSocket.recv(1024)
         sumando = url.split("/")[1].split()[0]
         if wait_first:
@@ -30,8 +30,6 @@ try:
                             "</body></html>" + "\r\n")
             wait_first = True
             recvSocket.close()
-            # posible solucion a los GET de favicon.ico:
-            #'<link rel="icon" href="http://localhost/" />'
 except KeyboardInterrupt:
     print "Closing binded socket"
     mySocket.close()
