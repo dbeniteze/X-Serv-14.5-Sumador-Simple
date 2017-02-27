@@ -14,7 +14,13 @@ try:
         print('HTTP request received:')
         url = recvSocket.recv(1024)
         sumando = url.split("/")[1].split()[0]
-        if wait_first:
+        print sumando
+        if sumando == 'favicon.ico':
+            recvSocket.send("HTTP/1.1 200 OK\r\n\r\n" +
+                            '<html><body><link rel="icon"' +
+                            'href="http://localhost/" />' +
+                            "</body></html>" + "\r\n")
+        elif wait_first:
             sumando_1 = int(sumando)
             recvSocket.send("HTTP/1.1 200 OK\r\n\r\n" +
                             "<html><body><h1>" + str(sumando_1) +
