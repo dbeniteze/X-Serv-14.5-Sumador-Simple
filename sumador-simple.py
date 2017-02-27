@@ -13,7 +13,7 @@ try:
         (recvSocket, address) = mySocket.accept()
         print ('HTTP request received:')
         url = recvSocket.recv(1024)
-        sumando = url.split()[1][1:]
+        sumando = url.split("/")[1].split()[0]
         if wait_first:
             sumando_1 = int(sumando)
             recvSocket.send("HTTP/1.1 200 OK\r\n\r\n" +
@@ -40,4 +40,4 @@ except ValueError:
                     "<html><body></p> Error uso: " +
                     "Introduzca un numero valido " +
                     "</body></html>" + "\r\n")
-    recvSocket.close()
+recvSocket.close()
